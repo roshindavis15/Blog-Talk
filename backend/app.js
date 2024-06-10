@@ -1,15 +1,24 @@
 import express from 'express';
-import mongoose from 'mongoose'
 import connectDB from './config/db.js';
 import dotenv from 'dotenv'
-const app= express();
+import userRouter from './routes/user-routes.js';
 
 dotenv.config();
 
+const app= express();
+
+app.use(express.json());
+
 connectDB();
+
+app.use("/api/user",userRouter);
 
 app.use("/",(req,res,next)=>{
     res.send("Hello world")
 });
 
-app.listen(3000);
+const PORT=process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
