@@ -1,7 +1,6 @@
 import User from "../model/User.js";
 import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
-import nodemailer from 'nodemailer';
 import { sendOTPEmail } from "../utils/helpers/emailHelper.js";
 import { generateToken } from "../utils/helpers/jwtHelper.js";
 
@@ -75,7 +74,6 @@ export const signUp = async (req, res) => {
 export const verifyOTP = async (req, res) => {
     console.log("req.body:", req.body);
     const { email, otp } = req.body;
-
 
     try {
         const user = await User.findOne({ email });
