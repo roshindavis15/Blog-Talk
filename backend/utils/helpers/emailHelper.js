@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS
   }
 });
-console.log(transporter);
+
 
 export const sendOTPEmail = (to, otp) => {
   const mailOptions = {
