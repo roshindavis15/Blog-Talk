@@ -13,6 +13,7 @@ export const generateToken=(res,user)=>{
         sameSite:'strict',
         maxAge: 1 * 60 * 60 * 1000 
     });
+    console.log("response:",res);
 
 };
 
