@@ -2,6 +2,8 @@ import express from 'express';
 import connectDB from './config/db.js';
 import dotenv from 'dotenv'
 import userRouter from './routes/user-routes.js';
+import blogRouter from './routes/blog-routes.js';
+
 
 dotenv.config();
 
@@ -9,9 +11,11 @@ const app= express();
 
 app.use(express.json());
 
+
 connectDB();
 
 app.use("/api/user",userRouter);
+app.use("/api/blog",blogRouter);
 
 app.use("/",(req,res,next)=>{
     res.send("Hello world")
