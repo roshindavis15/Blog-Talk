@@ -50,8 +50,9 @@ export const signUp = async (req, res) => {
             email: email,
             password: hashedPassword,
             otp,
-            otpExpires
-        })
+            otpExpires,
+            blogs:[]
+        });
         await user.save();
 
         //sending otp via mail
@@ -128,4 +129,20 @@ export const login = async (req, res) => {
         res.status(500).send('Server error')
     }
 };
+
+export const logout = async(req,res)=>{
+    try {
+        res.clearCookie('accessToken',{
+            httpOnly:true,
+            secure:process.env.NODE_ENV !=='development',
+            sameSite:'strict'
+        });
+        res.status(200).json({message:"Logout Successfull"});
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+}
+
+
 
