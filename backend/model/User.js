@@ -16,6 +16,7 @@ const userSchema= new mongoose.Schema({
         required:true,
         minlength:6
     },
+    blogs:[{type:mongoose.Types.ObjectId,ref:"Blog",required:true}],
     isVerified:{
         type:Boolean,
         default:false
